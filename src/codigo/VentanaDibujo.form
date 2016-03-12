@@ -152,7 +152,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1163" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -173,9 +173,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="deshacer" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="deshacer" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jSlider1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -195,8 +195,9 @@
                   <Component id="linea" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="colores" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace min="362" pref="362" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
                   <Component id="borrarTodo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -204,27 +205,25 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="circulo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rombo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="triangulo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cruz" alignment="0" max="32767" attributes="0"/>
+                          <Component id="estrella" alignment="0" max="32767" attributes="0"/>
+                          <Component id="linea" alignment="0" max="32767" attributes="0"/>
+                          <Component id="colores" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cuadrado" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="borrarTodo" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                           <Component id="jSlider1" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="deshacer" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="circulo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rombo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="triangulo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cruz" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="estrella" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="linea" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="colores" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cuadrado" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="deshacer" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="borrarTodo" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -232,13 +231,17 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="50"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="250"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSlider" name="jSlider1">
           <Properties>
             <Property name="maximum" type="int" value="500"/>
             <Property name="minimum" type="int" value="1"/>
+            <Property name="value" type="int" value="250"/>
           </Properties>
           <Events>
             <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jSlider1MouseDragged"/>
