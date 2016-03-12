@@ -26,7 +26,7 @@ public class Linea extends Polygon{
         
         //posicon de los puntos
                 addPoint(_x-_width,_y-1);
-                addPoint(_x+_width,_y-1);
+                //addPoint(_x+_width,_y-1);
                 addPoint(_x-_width, _y);
         
         this.color = _color;

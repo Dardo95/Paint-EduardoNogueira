@@ -111,7 +111,6 @@ public class VentanaDibujo extends javax.swing.JFrame {
         g2.fillRect(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
         //dibujo todos los elementos del array menores que el indice
         for (int i = 0; i < listaFormas.size(); i++) {
-//            ((Shape)listaFormas.get(i)).pintaYColorea(g2);
             //las formas a pintar
             if (listaFormas.get(i) instanceof Circulo ){
                  ((Circulo) listaFormas.get(i)).pintaYColorea(g2);
@@ -131,6 +130,9 @@ public class VentanaDibujo extends javax.swing.JFrame {
             
             if (listaFormas.get(i) instanceof Linea ){
                 ((Linea) listaFormas.get(i)).pintaYColorea(g2);
+            }
+            if (listaFormas.get(i) instanceof Cuadrado ){
+                ((Cuadrado) listaFormas.get(i)).pintaYColorea(g2);
             }
         }
         //apunto al jPanel
@@ -154,17 +156,19 @@ public class VentanaDibujo extends javax.swing.JFrame {
         jDialog2 = new javax.swing.JDialog();
         jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
-        deshacer = new javax.swing.JButton();
-        borrarTodo = new javax.swing.JButton();
-        jSlider1 = new javax.swing.JSlider();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        triangulo = new javax.swing.JButton();
+        jSlider1 = new javax.swing.JSlider();
+        deshacer = new javax.swing.JButton();
         circulo = new javax.swing.JButton();
+        cuadrado = new javax.swing.JButton();
         rombo = new javax.swing.JButton();
-        estrella = new javax.swing.JButton();
+        triangulo = new javax.swing.JButton();
         cruz = new javax.swing.JButton();
+        estrella = new javax.swing.JButton();
         linea = new javax.swing.JButton();
         colores = new javax.swing.JButton();
+        borrarTodo = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -237,28 +241,18 @@ public class VentanaDibujo extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1159, Short.MAX_VALUE)
+            .addGap(0, 1163, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 476, Short.MAX_VALUE)
         );
 
-        deshacer.setText("DESHACER");
-        deshacer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                deshacerMousePressed(evt);
-            }
-        });
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
-        borrarTodo.setText("BORRA TODO");
-        borrarTodo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                borrarTodoMousePressed(evt);
-            }
-        });
+        jLabel1.setText("50");
 
-        jSlider1.setMaximum(200);
+        jSlider1.setMaximum(500);
         jSlider1.setMinimum(1);
         jSlider1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -271,12 +265,10 @@ public class VentanaDibujo extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("50");
-
-        triangulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/triangulo.png"))); // NOI18N
-        triangulo.addMouseListener(new java.awt.event.MouseAdapter() {
+        deshacer.setText("DESHACER");
+        deshacer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                trianguloMousePressed(evt);
+                deshacerMousePressed(evt);
             }
         });
 
@@ -287,6 +279,13 @@ public class VentanaDibujo extends javax.swing.JFrame {
             }
         });
 
+        cuadrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cuadrado.png"))); // NOI18N
+        cuadrado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cuadradoMousePressed(evt);
+            }
+        });
+
         rombo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rombo.png"))); // NOI18N
         rombo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -294,10 +293,10 @@ public class VentanaDibujo extends javax.swing.JFrame {
             }
         });
 
-        estrella.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/estrella.png"))); // NOI18N
-        estrella.addMouseListener(new java.awt.event.MouseAdapter() {
+        triangulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/triangulo.png"))); // NOI18N
+        triangulo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                estrellaMousePressed(evt);
+                trianguloMousePressed(evt);
             }
         });
 
@@ -305,6 +304,13 @@ public class VentanaDibujo extends javax.swing.JFrame {
         cruz.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cruzMousePressed(evt);
+            }
+        });
+
+        estrella.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/estrella.png"))); // NOI18N
+        estrella.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                estrellaMousePressed(evt);
             }
         });
 
@@ -321,6 +327,66 @@ public class VentanaDibujo extends javax.swing.JFrame {
                 coloresMousePressed(evt);
             }
         });
+
+        borrarTodo.setText("BORRA TODO");
+        borrarTodo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                borrarTodoMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(deshacer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addComponent(circulo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rombo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(triangulo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cruz, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(estrella, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(linea, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(colores, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(362, 362, 362)
+                .addComponent(borrarTodo))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deshacer)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel1)
+                                .addComponent(circulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rombo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(triangulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cruz, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(estrella, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(linea, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(colores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cuadrado, javax.swing.GroupLayout.Alignment.LEADING))))
+                    .addComponent(borrarTodo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jMenu1.setText("Archivo");
 
@@ -344,53 +410,14 @@ public class VentanaDibujo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(deshacer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1)
-                        .addGap(27, 27, 27)
-                        .addComponent(circulo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rombo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(triangulo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cruz, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(estrella, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(linea, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(colores, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(borrarTodo)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(deshacer)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(circulo)
-                                        .addComponent(rombo)
-                                        .addComponent(triangulo)
-                                        .addComponent(cruz)
-                                        .addComponent(estrella)
-                                        .addComponent(linea)
-                                        .addComponent(colores))
-                                    .addComponent(jLabel1)))))
-                    .addComponent(borrarTodo))
-                .addGap(18, 18, 18)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -434,6 +461,11 @@ public class VentanaDibujo extends javax.swing.JFrame {
           case 5: {
               Linea aux = new Linea(evt.getX(), evt.getY(), 1, colorElegido, rootPaneCheckingEnabled);
               listaFormas.add( new Linea(evt.getX(), evt.getY(), jSlider1.getValue(), colorElegido, true));
+          } break;
+          
+          case 6: {
+              Cuadrado aux = new Cuadrado(evt.getX(), evt.getY(), 1, colorElegido, rootPaneCheckingEnabled);
+              listaFormas.add( new Cuadrado(evt.getX(), evt.getY(), jSlider1.getValue(), colorElegido, true));
           } break;
      }
      
@@ -507,12 +539,13 @@ public class VentanaDibujo extends javax.swing.JFrame {
             int alto = jSlider1.getValue();
             //formas posibles
             switch(forma){
-                case 0:listaFormas.add( new Circulo(evt.getX(), evt.getY(), jSlider1.getValue(), colorElegido,true) ); break; 
-                case 1:listaFormas.add( new Triangulo(evt.getX(), evt.getY(), jSlider1.getValue(), colorElegido,true) ); break;
-                case 2:listaFormas.add( new Rombo(evt.getX(), evt.getY(), alto, ancho, colorElegido,true) ); break;
-                case 3:listaFormas.add( new Cruz(evt.getX(), evt.getY(), alto, colorElegido,true) ); break;
-                case 4:listaFormas.add( new Estrella(evt.getX(), evt.getY(), alto, colorElegido,true) ); break;
-                case 5:listaFormas.add( new Linea(evt.getX(), evt.getY(), jSlider1.getValue(), colorElegido,true) ); break;
+                case 0:listaFormas.add( new Circulo(evt.getX(), evt.getY(), alto, colorElegido, true) ); break; 
+                case 1:listaFormas.add( new Triangulo(evt.getX(), evt.getY(), alto, colorElegido, true) ); break;
+                case 2:listaFormas.add( new Rombo(evt.getX(), evt.getY(), ancho, alto, colorElegido, true) ); break;
+                case 3:listaFormas.add( new Cruz(evt.getX(), evt.getY(), jSlider1.getValue()/6, colorElegido, true) ); break;
+                case 4:listaFormas.add( new Estrella(evt.getX(), evt.getY(), alto, colorElegido, true) ); break;
+                case 5:listaFormas.add( new Linea(evt.getX(), evt.getY(), jSlider1.getValue(), colorElegido, true) ); break;
+                case 6:listaFormas.add( new Cuadrado(evt.getX(), evt.getY(), jSlider1.getValue(), colorElegido, true) ); break;
             }
         }
 
@@ -673,6 +706,37 @@ public class VentanaDibujo extends javax.swing.JFrame {
 
                 
             } break;
+            
+            case 6:{
+                //leo el ultimo elemento de la lista. Se que se añadio
+                //en el mousepressed
+                Cuadrado aux = (Cuadrado) listaFormas.get(listaFormas.size()-1);
+                int ancho = 0;
+                int alto = 0;
+                   
+                if(r == 1){
+                
+                puntoX = aux.xpoints[0];
+                puntoY = aux.ypoints[0];
+                r=0;
+                }
+                               
+                ancho = (int) (evt.getX() - puntoX);
+                alto = (int) (evt.getY() - puntoY);
+                
+                //puntos del cuadrado
+                aux.xpoints[0] = puntoX;
+                aux.ypoints[0] = puntoY;
+
+                aux.xpoints[1] = puntoX + ancho;
+                aux.ypoints[1] = puntoY;
+
+                aux.xpoints[2] = puntoX + ancho;
+                aux.ypoints[2] = puntoY + alto;
+
+                aux.xpoints[3] = puntoX;
+                aux.ypoints[3] = puntoY + alto;
+            } break;
         }
         
         repaint();
@@ -714,6 +778,10 @@ public class VentanaDibujo extends javax.swing.JFrame {
         //jLabel1
         jLabel1.setText(String.valueOf(jSlider1.getValue()));
     }//GEN-LAST:event_jSlider1MouseDragged
+
+    private void cuadradoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuadradoMousePressed
+        forma = 6;
+    }//GEN-LAST:event_cuadradoMousePressed
 
     
     /**
@@ -758,6 +826,7 @@ public class VentanaDibujo extends javax.swing.JFrame {
     private javax.swing.JButton circulo;
     private javax.swing.JButton colores;
     private javax.swing.JButton cruz;
+    private javax.swing.JButton cuadrado;
     private javax.swing.JButton deshacer;
     private javax.swing.JButton estrella;
     private javax.swing.JColorChooser jColorChooser1;
@@ -768,6 +837,7 @@ public class VentanaDibujo extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JButton linea;
     private javax.swing.JMenuBar menu;
