@@ -19,12 +19,12 @@ public class Linea extends Polygon{
     public Color color = null;
     //relleno
     public boolean relleno = false;
- 
+    //no quito el bolean _relleno porque me da error en el ventana dibujo, y como arreglar eso pero si lo intente
     public Linea (int _x, int _y, int _width,  Color _color, boolean _relleno){
         
         //posicon de los puntos
                 addPoint(_x-_width,_y-1);
-                //addPoint(_x+_width,_y-1);
+                addPoint(_x+_width,_y-1);
                 addPoint(_x-_width, _y);
         
         this.color = _color;

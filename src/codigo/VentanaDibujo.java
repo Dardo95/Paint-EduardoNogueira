@@ -180,6 +180,11 @@ public class VentanaDibujo extends javax.swing.JFrame {
         });
 
         cancelar.setText("CANCELAR");
+        cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cancelarMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -327,7 +332,7 @@ public class VentanaDibujo extends javax.swing.JFrame {
         });
 
         linea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/linea.png"))); // NOI18N
-        linea.setToolTipText("<html>Hace una linea, arrastra el raton<br> para hacerla mas larga.</html>");
+        linea.setToolTipText("<html>Hace una linea, arrastra el raton<br>\npara hacerla mas larga.<br>\nSolo linea horizontal</html>");
         linea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lineaMousePressed(evt);
@@ -512,6 +517,7 @@ public class VentanaDibujo extends javax.swing.JFrame {
           } break;
           
           case 5: {
+              //solo pinta linea recta horizontalmente.
               Linea aux = new Linea(evt.getX(), evt.getY(), 1, colorElegido, rootPaneCheckingEnabled);
               listaFormas.add( new Linea(evt.getX(), evt.getY(), jSlider1.getValue(), colorElegido, true));
           } break;
@@ -535,6 +541,7 @@ public class VentanaDibujo extends javax.swing.JFrame {
         //como dice el metodo desace el ultimo elemento dibujado
         if (listaFormas.size() > 0){
             listaFormas.remove(listaFormas.size()-1); 
+            //El 0,0,1,1 hace que no haya parpadeo
             repaint(0,0,1,1);
         }
     }//GEN-LAST:event_deshacerMousePressed
@@ -542,6 +549,7 @@ public class VentanaDibujo extends javax.swing.JFrame {
     private void borrarTodoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarTodoMousePressed
         //borra todas las figuras dejando en blanco el panel para dibujar
         listaFormas.clear();
+        //El 0,0,1,1 hace que no haya parpadeo
         repaint(0,0,1,1);
     }//GEN-LAST:event_borrarTodoMousePressed
 
@@ -615,6 +623,7 @@ public class VentanaDibujo extends javax.swing.JFrame {
                 case 4: {
                     if (evt.getButton() == MouseEvent.BUTTON3) { listaFormas.add( new Estrella(evt.getX(), evt.getY(), alto, colorElegido, true) );}
                     else {listaFormas.add( new Estrella(evt.getX(), evt.getY(), alto, colorElegido, false) );}} break;
+                //solo pinta linea recta horizontalmente.
                 case 5:listaFormas.add( new Linea(evt.getX(), evt.getY(), jSlider1.getValue(), colorElegido, true) ); break;
                 case 6: {
                     if (evt.getButton() == MouseEvent.BUTTON3) { listaFormas.add( new Cuadrado(evt.getX(), evt.getY(), jSlider1.getValue(), colorElegido, true) );}
@@ -622,7 +631,7 @@ public class VentanaDibujo extends javax.swing.JFrame {
             }
         }
 
-        
+        //El 0,0,1,1 hace que no haya parpadeo
         repaint(0,0,1,1);
     }//GEN-LAST:event_jPanel1MouseClicked
 
@@ -812,7 +821,7 @@ public class VentanaDibujo extends javax.swing.JFrame {
                 aux.ypoints[3] = puntoY + alto;
             } break;
         }
-        
+        //El 0,0,1,1 hace que no haya parpadeo
         repaint(0,0,1,1);
         
     }//GEN-LAST:event_jPanel1MouseDragged
@@ -856,6 +865,11 @@ public class VentanaDibujo extends javax.swing.JFrame {
     private void cuadradoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuadradoMousePressed
         forma = 6;
     }//GEN-LAST:event_cuadradoMousePressed
+
+    private void cancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMousePressed
+        //boton cancelar de la paleta de colores
+        jDialog1.setVisible(false);
+    }//GEN-LAST:event_cancelarMousePressed
 
     
     /**
