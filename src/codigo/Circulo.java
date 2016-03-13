@@ -1,9 +1,7 @@
 /*
- * Mi primera clase java
-
 La clase círculo permite almacenar un círculo
-además de su posición en la pantalla, si está relleno o no
-, su color etc
+además de su posición en la pantalla, si está relleno o no,
+su color etc
  */
 package codigo;
 
@@ -13,7 +11,7 @@ import java.awt.geom.Ellipse2D;
 
 /**
  *
- * @author Jorge Cisneros
+ * @author Dardo Nogueira
  */
 public class Circulo extends Ellipse2D.Double{
     

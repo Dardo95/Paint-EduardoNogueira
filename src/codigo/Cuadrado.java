@@ -12,7 +12,7 @@ import java.awt.Polygon;
 
 /**
  *
- * @author Dardo
+ * @author Dardo Nogueira
  */
 public class Cuadrado extends Polygon{
     
@@ -42,6 +42,7 @@ public class Cuadrado extends Polygon{
         
         
         this.color = _color;
+        
         this.relleno = _relleno;
         
     }

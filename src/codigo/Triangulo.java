@@ -1,9 +1,7 @@
 /*
- * Mi segunda clase java
-
 La clase triangulo permite almacenar un triangulo
-además de su posición en la pantalla, si está relleno o no
-, su color etc
+además de su posición en la pantalla, si está relleno o no,
+su color etc
  */
 package codigo;
 
@@ -13,7 +11,7 @@ import java.awt.Polygon;
 
 /**
  *
- * @author Jorge Cisneros
+ * @author Dardo Nogueira
  */
 public class Triangulo extends Polygon{
     

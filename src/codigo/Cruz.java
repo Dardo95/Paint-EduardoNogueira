@@ -11,7 +11,7 @@ import java.awt.Polygon;
 
 /**
  *
- * @author xp
+ * @author Dardo Nogueira
  */
 public class Cruz extends Polygon{
     //color
